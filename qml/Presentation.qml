@@ -5,13 +5,19 @@ Item {
     width: 1440
     height: 900
 
-    signal nextSlide()
+    signal nextSlideState()
     signal previousSlide()
 
     property int currentSlideIndex: 1
     property int slidesCount: 2
 
-    onNextSlide: currentSlideIndex >= slidesCount ? currentSlideIndex = currentSlideIndex : currentSlideIndex = currentSlideIndex + 1
+    onNextSlideState: {
+        var result = loaderItem.item.nextState()
+        if (result === -1) {
+            currentSlideIndex >= slidesCount ? currentSlideIndex = currentSlideIndex : currentSlideIndex = currentSlideIndex + 1
+        }
+    }
+
     onPreviousSlide: currentSlideIndex <= 1 ? currentSlideIndex = currentSlideIndex : currentSlideIndex = currentSlideIndex - 1
 
     Rectangle{
@@ -21,6 +27,7 @@ Item {
     }
 
     Loader{
+        id: loaderItem
         anchors.fill: parent
         anchors.margins: 40
         source: "./slides/Slide"+ currentSlideIndex +".qml"

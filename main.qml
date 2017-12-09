@@ -14,7 +14,7 @@ Window {
 
     MouseArea{
         anchors.fill: parent
-        onClicked: presentation.nextSlide()
+        onClicked: presentation.nextSlideState()
     }
 
     Presentation{
@@ -23,9 +23,9 @@ Window {
         anchors.centerIn: parent
 
         Keys.onLeftPressed: presentation.previousSlide()
-        Keys.onRightPressed: presentation.nextSlide()
+        Keys.onRightPressed: presentation.nextSlideState()
         Keys.onUpPressed: presentation.previousSlide()
-        Keys.onDownPressed: presentation.nextSlide()
+        Keys.onDownPressed: presentation.nextSlideState()
     }
 
     onWidthChanged: {

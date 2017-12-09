@@ -4,6 +4,7 @@ import QtGraphicalEffects 1.0
 Item {
     property string title: ""
     property alias content: container.sourceComponent
+    property int currentStateIndex: 0
 
     Text {
         id: titleItem
@@ -29,4 +30,16 @@ Item {
         anchors.bottom: parent.bottom
     }
 
+    //return -1 if all state has been displayed
+    //return 0 if change state successfully
+    function nextState() {
+        var statesLength = container.item.states.length
+        if (currentStateIndex < statesLength) {
+            currentStateIndex++
+            container.item.state = "" + currentStateIndex
+            return 0
+        }
+        return -1
+
+    }
 }
