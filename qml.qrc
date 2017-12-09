@@ -3,5 +3,7 @@
         <file>main.qml</file>
         <file>qml/Presentation.qml</file>
         <file>qml/templates/Slide.qml</file>
+        <file>qml/slides/Slide1.qml</file>
+        <file>images/mountain.jpg</file>
     </qresource>
 </RCC>

@@ -16,9 +16,9 @@ Item {
         color: "white"
     }
 
-    Slide {
-        id: slide
+    Loader{
         anchors.fill: parent
-        title: "First Slide"
+        anchors.margins: 40
+        source: "./slides/Slide1.qml"
     }
 }

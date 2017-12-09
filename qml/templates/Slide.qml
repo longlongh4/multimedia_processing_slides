@@ -3,7 +3,7 @@ import QtGraphicalEffects 1.0
 
 Item {
     property string title: ""
-    anchors.margins: 40
+    property alias content: container.sourceComponent
 
     Text {
         id: titleItem
@@ -21,9 +21,10 @@ Item {
         color: "darkgrey"
     }
 
-    Item {
+    Loader {
         id: container
         width: parent.width
+        anchors.topMargin: 4
         anchors.top: horizontalLineItem.bottom
         anchors.bottom: parent.bottom
     }
