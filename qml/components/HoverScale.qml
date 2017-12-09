@@ -4,13 +4,23 @@ import QtGraphicalEffects 1.0
 Item {
     id: container
     property alias target: loaderItem.sourceComponent
-    width: loaderItem.width
-    height: loaderItem.height
+    property alias targetItem: loaderItem.item
+
+    onWidthChanged: loaderItem.item.width = width
+    onHeightChanged: loaderItem.item.height = height
 
     MouseArea{
         id: mouseAreaItem
         anchors.fill: parent
         hoverEnabled: true
+        propagateComposedEvents: true
+
+        onClicked: mouse.accepted = false;
+        onPressed: mouse.accepted = false;
+        onReleased: mouse.accepted = false;
+        onDoubleClicked: mouse.accepted = false;
+        onPositionChanged: mouse.accepted = false;
+        onPressAndHold: mouse.accepted = false;
 
         onContainsMouseChanged: containsMouse ? container.state = "hover" : container.state = ""
     }
@@ -36,10 +46,14 @@ Item {
         glowRadius: 4
         spread: 0.2
         color: "green"
-        cornerRadius: 10 + glowRadius
+        cornerRadius: glowRadius
     }
 
     Loader{
         id: loaderItem
+        onLoaded: {
+            container.width = loaderItem.item.width
+            container.height = loaderItem.item.height
+        }
     }
 }

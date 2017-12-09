@@ -7,5 +7,7 @@
         <file>images/mountain.jpg</file>
         <file>qml/components/HoverScale.qml</file>
         <file>qml/slides/Slide2.qml</file>
+        <file>images/ccd.jpg</file>
+        <file>images/ycrcb.jpg</file>
     </qresource>
 </RCC>

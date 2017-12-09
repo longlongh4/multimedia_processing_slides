@@ -3,8 +3,9 @@ import QtGraphicalEffects 1.0
 
 Item {
     property string title: ""
-    property alias content: container.sourceComponent
-    property int currentStateIndex: 0
+    default property alias placeHolderData: placeHolder.data
+    property int currentAnimationIndex: 0
+    property int animationsCount: 0
 
     Text {
         id: titleItem
@@ -22,24 +23,61 @@ Item {
         color: "darkgrey"
     }
 
-    Loader {
-        id: container
-        width: parent.width
+    Item {
+        id: placeHolder
+        anchors.left: parent.left
+        anchors.right: parent.right
         anchors.topMargin: 4
         anchors.top: horizontalLineItem.bottom
         anchors.bottom: parent.bottom
+
+        Component.onCompleted: {
+            var count = 0
+            for (var i = 0; i < resources.length; i++) {
+                if ((resources[i] instanceof Animation) && resources[i].objectName.startsWith("animation")) {
+                    count ++
+                }
+            }
+            animationsCount = count
+        }
     }
+
+
 
     //return -1 if all state has been displayed
     //return 0 if change state successfully
     function nextState() {
-        var statesLength = container.item.states.length
-        if (currentStateIndex < statesLength) {
-            currentStateIndex++
-            container.item.state = "" + currentStateIndex
+        if (animationsCount===0) {
+            return -1
+        }
+
+        var animationItem = findAnimationItemByCurrentIndex()
+
+        if (animationItem !== null && animationItem.running === true) {
+            animationItem.complete()
+            return 0
+        }
+
+        if (currentAnimationIndex < animationsCount) {
+            currentAnimationIndex++
+            var innerAnimationItem = findAnimationItemByCurrentIndex()
+            if (innerAnimationItem === null){
+                return -1
+            }
+            innerAnimationItem.start()
             return 0
         }
         return -1
 
+    }
+
+    function findAnimationItemByCurrentIndex() {
+        var resources = placeHolder.resources
+        for (var i = 0; i < resources.length; i++) {
+            if ((resources[i] instanceof Animation) && resources[i].objectName === ("animation" + currentAnimationIndex)) {
+                return resources[i]
+            }
+        }
+        return null
     }
 }

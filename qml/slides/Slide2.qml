@@ -4,7 +4,5 @@ import "../components"
 
 Slide {
     title: "Second Slide"
-    content: Item{
 
-    }
 }
