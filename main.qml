@@ -26,6 +26,7 @@ Window {
         Keys.onRightPressed: presentation.nextSlideState()
         Keys.onUpPressed: presentation.previousSlide()
         Keys.onDownPressed: presentation.nextSlideState()
+        Keys.onEscapePressed: window.showNormal()
     }
 
     onWidthChanged: {
