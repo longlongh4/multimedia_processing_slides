@@ -26,11 +26,15 @@ Slide {
         id: mountain
         x: (parent.width - 800) / 2
         y: 100
-        target: Image {
-            width: 800
+        width: 800
+        Image {
             onWidthChanged: mountain.height = width / sourceSize.width * sourceSize.height
             fillMode: Image.PreserveAspectFit
+            anchors.fill: parent
             source: "qrc:/images/mountain.jpg"
+            onStatusChanged: if (status == Image.Ready) {
+                                 parent.height = parent.width/sourceSize.width*sourceSize.height
+                             }
         }
     }
 
@@ -38,11 +42,15 @@ Slide {
         id: ccd
         x: 430
         y: 20
+        width: 400
         opacity: 0
-        target: Image {
-            width: 400
+        Image {
             fillMode: Image.PreserveAspectFit
             source: "qrc:/images/ccd.jpg"
+            anchors.fill: parent
+            onStatusChanged: if (status == Image.Ready) {
+                                 parent.height = parent.width/sourceSize.width*sourceSize.height
+                             }
         }
     }
 
@@ -51,10 +59,14 @@ Slide {
         x: 860
         y: 10
         opacity: 0
-        target: Image {
-            width: 360
+        width: 360
+        Image {
             fillMode: Image.PreserveAspectFit
             source: "qrc:/images/ycrcb.jpg"
+            anchors.fill: parent
+            onStatusChanged: if (status == Image.Ready) {
+                                 parent.height = parent.width/sourceSize.width*sourceSize.height
+                             }
         }
     }
 }

@@ -3,11 +3,6 @@ import QtGraphicalEffects 1.0
 
 Item {
     id: container
-    property alias target: loaderItem.sourceComponent
-    property alias targetItem: loaderItem.item
-
-    onWidthChanged: loaderItem.item.width = width
-    onHeightChanged: loaderItem.item.height = height
 
     MouseArea{
         id: mouseAreaItem
@@ -47,13 +42,5 @@ Item {
         spread: 0.2
         color: "green"
         cornerRadius: glowRadius
-    }
-
-    Loader{
-        id: loaderItem
-        onLoaded: {
-            container.width = loaderItem.item.width
-            container.height = loaderItem.item.height
-        }
     }
 }
