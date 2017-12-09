@@ -1,16 +1,19 @@
 import QtQuick 2.0
 import "../templates"
+import "../components"
 
 Slide {
     title: "First Slide"
     content: Item{
-        Image {
-            id: mountain
-            width: 800
+        HoverScale{
             x: (parent.width - 800) / 2
             y: 100
-            fillMode: Image.PreserveAspectFit
-            source: "qrc:/images/mountain.jpg"
+            id: mountain
+            target: Image {
+                width: 800
+                fillMode: Image.PreserveAspectFit
+                source: "qrc:/images/mountain.jpg"
+            }
         }
     }
 }
