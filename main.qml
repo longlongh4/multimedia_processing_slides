@@ -8,11 +8,24 @@ Window {
     visible: true
     width: 1440
     height: 900
+
     flags: Qt.WindowFullscreenButtonHint
     title: qsTr("MultiMedia Processing")
+
+    MouseArea{
+        anchors.fill: parent
+        onClicked: presentation.nextSlide()
+    }
+
     Presentation{
         id: presentation
+        focus: true
         anchors.centerIn: parent
+
+        Keys.onLeftPressed: presentation.previousSlide()
+        Keys.onRightPressed: presentation.nextSlide()
+        Keys.onUpPressed: presentation.previousSlide()
+        Keys.onDownPressed: presentation.nextSlide()
     }
 
     onWidthChanged: {

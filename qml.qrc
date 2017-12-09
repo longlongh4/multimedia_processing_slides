@@ -6,5 +6,6 @@
         <file>qml/slides/Slide1.qml</file>
         <file>images/mountain.jpg</file>
         <file>qml/components/HoverScale.qml</file>
+        <file>qml/slides/Slide2.qml</file>
     </qresource>
 </RCC>
