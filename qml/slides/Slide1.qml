@@ -22,6 +22,16 @@ Slide {
         NumberAnimation { target: ycrcb; property: "opacity"; to: 1; easing.type: Easing.InOutQuad; duration: 400 }
     }
 
+    ParallelAnimation{
+        objectName: "animation4"
+        NumberAnimation { target: yuvName; property: "opacity"; to: 1; easing.type: Easing.InOutQuad; duration: 400 }
+    }
+
+    ParallelAnimation{
+        objectName: "animation5"
+        NumberAnimation { target: rgbToYUV; property: "opacity"; to: 1; easing.type: Easing.InOutQuad; duration: 400 }
+    }
+
     HoverScale{
         id: mountain
         x: (parent.width - 800) / 2
@@ -68,5 +78,29 @@ Slide {
                                  parent.height = parent.width/sourceSize.width*sourceSize.height
                              }
         }
+    }
+
+    Text {
+        id: yuvName
+        text: "
+Y    is the luma component
+CB is the blue-difference chroma component
+CR is the red-difference chroma component"
+        font.pointSize: 32
+        x: 160
+        y: 300
+        opacity: 0
+    }
+
+    Text {
+        id: rgbToYUV
+        text: "
+Y    = 0.299R+0.587G+0.114B
+Cb = 0.564(B-Y)
+Cr  = 0.713(R-Y)"
+        font.pointSize: 32
+        x: 160
+        y: 480
+        opacity: 0
     }
 }
