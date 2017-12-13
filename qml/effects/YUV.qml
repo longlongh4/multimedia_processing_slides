@@ -3,22 +3,19 @@ import QtQuick 2.0
 Effect {
     parameters: ListModel {
         ListElement {
-            name: "Grid Spacing"
-            value: 0.5
+            name: "DisplayMode"
+            value: 1
         }
-        onDataChanged: updateGrid()
+        onDataChanged: updateDisplayMode()
     }
 
-    function updateGrid()
+    function updateDisplayMode()
     {
-            grid = parameters.get(0).value * 10;
+        displayMode = parameters.get(0).value
     }
 
     // Transform slider values, and bind result to shader uniforms
-    property real grid: 5.0
-
-    property real step_x: 0.0015625
-    property real step_y: targetHeight ? (step_x * targetWidth / targetHeight) : 0.0
+    property int displayMode: 1
 
     vertexShader: "
                     uniform highp mat4 qt_Matrix;
@@ -32,18 +29,30 @@ Effect {
 
     fragmentShader: "
         varying highp vec2 coord;
+        uniform int displayMode;
         uniform sampler2D source;
+        uniform float dividerValue;
         uniform lowp float qt_Opacity;
         void main() {
             lowp vec4 rgba = texture2D(source, coord);
-            lowp vec4 yuva = vec4(0.0);
+            lowp vec4 yuva = rgba;
 
-            yuva.x = 0.0;
-            yuva.y = rgba.g;
-            yuva.z = 0.0;
-            yuva.w = 1.0;
+            if (displayMode == 2) {
+                yuva.y = 0.0;
+                yuva.z = 0.0;
+            } else if (displayMode == 3) {
+                yuva.x = 0.0;
+                yuva.z = 0.0;
+            }  else if (displayMode == 4) {
+                yuva.x = 0.0;
+                yuva.y = 0.0;
+            }
 
-            gl_FragColor = yuva * qt_Opacity;
+            if (coord.x < dividerValue)
+                gl_FragColor = yuva * qt_Opacity;
+            else
+                gl_FragColor = qt_Opacity * texture2D(source, coord);
+
         }
     "
 }
