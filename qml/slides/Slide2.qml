@@ -67,6 +67,35 @@ Slide {
                 text: "B Only"
                 onCheckedChanged: if(checked) {effect.displayMode = 4}
             }
+            Rectangle{
+                width: parent.width
+                height: 2
+                color: "black"
+            }
+            RadioButton {
+                text: "YUV"
+                onCheckedChanged: if(checked) {effect.displayMode = 5}
+            }
+            RadioButton {
+                text: "Y Only"
+                onCheckedChanged: if(checked) {effect.displayMode = 6}
+            }
+            RadioButton {
+                text: "Y + U"
+                onCheckedChanged: if(checked) {effect.displayMode = 7}
+            }
+            RadioButton {
+                text: "Y + V"
+                onCheckedChanged: if(checked) {effect.displayMode = 8}
+            }
+            RadioButton {
+                text: "U + V"
+                onCheckedChanged: if(checked) {effect.displayMode = 9}
+            }
+            RadioButton {
+                text: "Y + (U + V) / 2"
+                onCheckedChanged: if(checked) {effect.displayMode = 10}
+            }
         }
     }
 

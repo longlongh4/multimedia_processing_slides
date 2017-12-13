@@ -37,6 +37,9 @@ Effect {
             lowp vec4 rgba = texture2D(source, coord);
             lowp vec4 yuva = rgba;
 
+            mat3 yuv2rgb = mat3(1.0, 0.0, 1.28033, 1.0, -0.21482, -0.38059, 1.0, 2.12798, 0.0);
+            mat3 rgb2yuv = mat3(0.2126, 0.7152, 0.0722, -0.09991, -0.33609, 0.43600, 0.615, -0.5586, -0.05639);
+
             if (displayMode == 2) {
                 yuva.y = 0.0;
                 yuva.z = 0.0;
@@ -46,6 +49,22 @@ Effect {
             }  else if (displayMode == 4) {
                 yuva.x = 0.0;
                 yuva.y = 0.0;
+            }  else if (displayMode > 4) {
+                yuva.xyz = rgba.xyz * rgb2yuv;
+                if (displayMode == 6) {
+                    yuva.y = 0.0;
+                    yuva.z = 0.0;
+                } else if (displayMode == 7) {
+                    yuva.z = 0.0;
+                } else if (displayMode == 8) {
+                    yuva.y = 0.0;
+                } else if (displayMode == 9) {
+                    yuva.x = 0.0;
+                } else if (displayMode == 10) {
+                    yuva.y = yuva.y / 2.0;
+                    yuva.z = yuva.z / 2.0;
+                }
+                yuva.xyz = yuva.xyz * yuv2rgb;
             }
 
             if (coord.x < dividerValue)
