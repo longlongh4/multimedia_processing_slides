@@ -9,5 +9,10 @@
         <file>qml/slides/Slide2.qml</file>
         <file>images/ccd.jpg</file>
         <file>images/ycrcb.jpg</file>
+        <file>qml/components/ContentCamera.qml</file>
+        <file>qml/components/ContentVideo.qml</file>
+        <file>qml/effects/Billboard.qml</file>
+        <file>qml/effects/Effect.qml</file>
+        <file>qml/shaders/billboard.fsh</file>
     </qresource>
 </RCC>
