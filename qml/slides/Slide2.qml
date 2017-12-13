@@ -21,13 +21,21 @@ Slide {
         id: camera
     }
 
-    Billboard{
+    YUV{
         id: effect
         targetHeight: camera.height
         targetWidth: camera.width
         source: theSource
         anchors.fill: camera
     }
+
+    //    Billboard{
+    //        id: effect
+    //        targetHeight: camera.height
+    //        targetWidth: camera.width
+    //        source: theSource
+    //        anchors.fill: camera
+    //    }
 
     Slider {
         anchors {

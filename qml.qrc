@@ -14,5 +14,6 @@
         <file>qml/effects/Billboard.qml</file>
         <file>qml/effects/Effect.qml</file>
         <file>qml/shaders/billboard.fsh</file>
+        <file>qml/effects/YUV.qml</file>
     </qresource>
 </RCC>
