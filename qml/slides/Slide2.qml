@@ -31,10 +31,23 @@ Slide {
         PropertyAction { target: effect; property: "displayMode"; value: 1 }
     }
 
-    ParallelAnimation{
+    SequentialAnimation{
         objectName: "animation3"
-        PropertyAction { target: slide2; property: "effectItem"; value: "billboard" }
-        NumberAnimation { target: billboardEffect; property: "opacity"; to: 1.0; easing.type: Easing.InOutQuad; duration: 400 }
+        PropertyAction { target: billboardEffect; property: "opacity"; value: 0.1 }
+        ParallelAnimation{
+            PropertyAction { target: slide2; property: "effectItem"; value: "billboard" }
+            NumberAnimation { target: billboardEffect; property: "opacity"; to: 1.0; easing.type: Easing.InOutQuad; duration: 400 }
+        }
+    }
+
+    ParallelAnimation{
+        objectName: "animation4"
+        NumberAnimation { target: calculater; property: "opacity"; to: 1.0; easing.type: Easing.InOutQuad; duration: 400 }
+        NumberAnimation { target: calculater; property: "y"; to: 10; easing.type: Easing.InOutQuad; duration: 400 }
+        NumberAnimation { target: camera; property: "x"; to: 200; easing.type: Easing.InOutQuad; duration: 400 }
+        NumberAnimation { target: camera; property: "y"; to: 200; easing.type: Easing.InOutQuad; duration: 400 }
+        NumberAnimation { target: camera; property: "width"; to: 960; easing.type: Easing.InOutQuad; duration: 400 }
+        NumberAnimation { target: camera; property: "height"; to: 540; easing.type: Easing.InOutQuad; duration: 400 }
     }
 
 
@@ -122,10 +135,9 @@ Slide {
 
     onEffectItemChanged: {
         if (effectItem === "billboard") {
-            effect.source = null
+            effect.source = undefined
             effect.visible = false
             billboardEffect.source = theSource
-            billboardEffect.visible = true
         }
     }
 
@@ -137,7 +149,57 @@ Slide {
         anchors.fill: camera
     }
 
+    RowLayout {
+        id: calculater
+        opacity: 0
+        spacing: 20
+        y: -40
+        height: 40
+        TextEditWithStar{
+            id: edit
+            width: 800
+            height: 40
+            onTextChanged: valueItem.setValue(eval(text))
+        }
+
+        Text {
+            text: "="
+            font.family: "Courier"
+            font.pixelSize: 28
+            color: "black"
+        }
+        Text {
+            id: valueItem
+            width: 200
+            text: ""
+            font.family: "Courier"
+            font.pixelSize: 28
+            color: "black"
+            function setValue(textValue) {
+                if (textValue % 1 === 0) {
+                    if(textValue > 1000000000)
+                    {
+                        textValue /= 1000000000
+                        textValue += "GB"
+                    }else if(textValue > 1000000) {
+                        textValue /= 1000000
+                        textValue += "MB"
+                    }
+                    else if(textValue > 1000) {
+                        textValue /= 1000
+                        textValue += "KB"
+                    }
+
+                    text = textValue
+                }else {
+                    text = "I can't understand!"
+                }
+            }
+        }
+    }
+
     Slider {
+        id: sliderItem
         anchors {
             left: theSource.left
             right: theSource.right

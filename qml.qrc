@@ -15,5 +15,9 @@
         <file>qml/effects/Effect.qml</file>
         <file>qml/shaders/billboard.fsh</file>
         <file>qml/effects/YUV.qml</file>
+        <file>qml/components/Fireworks.qml</file>
+        <file>qml/slides/Slide3.qml</file>
+        <file>qml/components/TextEditWithStar.qml</file>
+        <file>images/star.png</file>
     </qresource>
 </RCC>
