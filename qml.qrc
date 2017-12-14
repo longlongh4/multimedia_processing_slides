@@ -27,5 +27,7 @@
         <file>qml/components/ContentImage.qml</file>
         <file>qml/slides/Slide5.qml</file>
         <file>images/compress_img.png</file>
+        <file>qml/slides/Slide6.qml</file>
+        <file>images/hobbit.mp4</file>
     </qresource>
 </RCC>

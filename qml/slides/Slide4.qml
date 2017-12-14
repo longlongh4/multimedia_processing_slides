@@ -10,8 +10,6 @@ Slide {
     id: slide4
     title: "Forth Slide"
 
-
-
     ShaderEffectSource {
         id: theSource
         smooth: true
