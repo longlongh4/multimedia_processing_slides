@@ -20,5 +20,12 @@
         <file>qml/components/TextEditWithStar.qml</file>
         <file>images/star.png</file>
         <file>images/yuv420.jpg</file>
+        <file>qml/slides/Slide4.qml</file>
+        <file>images/witcher3.jpg</file>
+        <file>qml/effects/EdgeDetection.qml</file>
+        <file>qml/shaders/sobeledgedetection.fsh</file>
+        <file>qml/components/ContentImage.qml</file>
+        <file>qml/slides/Slide5.qml</file>
+        <file>images/compress_img.png</file>
     </qresource>
 </RCC>
