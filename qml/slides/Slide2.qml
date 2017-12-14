@@ -7,7 +7,10 @@ import "../components"
 import "../effects"
 
 Slide {
+    id: slide2
     title: "Second Slide"
+
+    property string effectItem: "yuv"
 
     ParallelAnimation{
         objectName: "animation1"
@@ -17,6 +20,23 @@ Slide {
         NumberAnimation { target: radioGroup; property: "x"; to: 1120; easing.type: Easing.InOutQuad; duration: 400 }
         NumberAnimation { target: radioGroup; property: "opacity"; to: 1.0; easing.type: Easing.InOutQuad; duration: 400 }
     }
+
+    ParallelAnimation{
+        objectName: "animation2"
+        NumberAnimation { target: camera; property: "x"; to: 40; easing.type: Easing.InOutQuad; duration: 400 }
+        NumberAnimation { target: camera; property: "width"; to: 1280; easing.type: Easing.InOutQuad; duration: 400 }
+        NumberAnimation { target: camera; property: "height"; to: 720; easing.type: Easing.InOutQuad; duration: 400 }
+        NumberAnimation { target: radioGroup; property: "x"; to: 1360; easing.type: Easing.InOutQuad; duration: 400 }
+        NumberAnimation { target: radioGroup; property: "opacity"; to: 0.0; easing.type: Easing.InOutQuad; duration: 400 }
+        PropertyAction { target: effect; property: "displayMode"; value: 1 }
+    }
+
+    ParallelAnimation{
+        objectName: "animation3"
+        PropertyAction { target: slide2; property: "effectItem"; value: "billboard" }
+        NumberAnimation { target: billboardEffect; property: "opacity"; to: 1.0; easing.type: Easing.InOutQuad; duration: 400 }
+    }
+
 
     ShaderEffectSource {
         id: theSource
@@ -48,6 +68,7 @@ Slide {
         width: 240
         x: 1360
         opacity: 0
+
         ColumnLayout {
             anchors.fill: parent
             RadioButton {
@@ -99,13 +120,22 @@ Slide {
         }
     }
 
-    //    Billboard{
-    //        id: effect
-    //        targetHeight: camera.height
-    //        targetWidth: camera.width
-    //        source: theSource
-    //        anchors.fill: camera
-    //    }
+    onEffectItemChanged: {
+        if (effectItem === "billboard") {
+            effect.source = null
+            effect.visible = false
+            billboardEffect.source = theSource
+            billboardEffect.visible = true
+        }
+    }
+
+    Billboard{
+        id: billboardEffect
+        opacity: 0
+        targetHeight: camera.height
+        targetWidth: camera.width
+        anchors.fill: camera
+    }
 
     Slider {
         anchors {
@@ -115,7 +145,7 @@ Slide {
             topMargin: 10
         }
 
-        onValueChanged: effect.dividerValue = value
+        onValueChanged: { effect.dividerValue = value ; billboardEffect.dividerValue = value }
 
         from: 0.0
         value: 0.5
