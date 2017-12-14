@@ -19,5 +19,6 @@
         <file>qml/slides/Slide3.qml</file>
         <file>qml/components/TextEditWithStar.qml</file>
         <file>images/star.png</file>
+        <file>images/yuv420.jpg</file>
     </qresource>
 </RCC>
