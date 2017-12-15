@@ -3,7 +3,7 @@ import "../templates"
 import "../components"
 
 Slide {
-    title: "First Slide"
+    title: "How To Capture The World"
 
     ParallelAnimation{
         objectName: "animation1"

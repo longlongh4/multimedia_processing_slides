@@ -8,7 +8,7 @@ import "../effects"
 
 Slide {
     id: slide2
-    title: "Second Slide"
+    title: "Why Use YUV"
 
     property string effectItem: "yuv"
 

@@ -8,7 +8,7 @@ import "../effects"
 
 Slide {
     id: slide3
-    title: "Third Slide"
+    title: "YUV420"
 
     ParallelAnimation{
         objectName: "animation1"

@@ -28,6 +28,17 @@
         <file>qml/slides/Slide5.qml</file>
         <file>images/compress_img.png</file>
         <file>qml/slides/Slide6.qml</file>
+        <file>qml/slides/Slide7.qml</file>
+        <file>qml/slides/Slide8.qml</file>
+        <file>qml/slides/Slide9.qml</file>
+        <file>qml/slides/Slide10.qml</file>
+        <file>qml/slides/Slide11.qml</file>
+        <file>images/1.png</file>
+        <file>images/2.png</file>
+        <file>images/3.png</file>
+        <file>images/4.png</file>
+        <file>images/starfish_mask.png</file>
+        <file>images/particle.png</file>
         <file>images/hobbit.mp4</file>
     </qresource>
 </RCC>

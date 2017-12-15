@@ -8,8 +8,8 @@ Item {
     signal nextSlideState()
     signal previousSlide()
 
-    property int currentSlideIndex: 6
-    property int slidesCount: 6
+    property int currentSlideIndex: 1
+    property int slidesCount: 11
 
     onNextSlideState: {
         var result = loaderItem.item.nextState()

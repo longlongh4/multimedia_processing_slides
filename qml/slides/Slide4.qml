@@ -8,7 +8,7 @@ import "../effects"
 
 Slide {
     id: slide4
-    title: "Forth Slide"
+    title: "Compress Image One"
 
     ShaderEffectSource {
         id: theSource

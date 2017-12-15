@@ -7,14 +7,14 @@ import "../components"
 import "../effects"
 
 Slide {
-    id: slide5
-    title: "Compress Image Two"
+    id: slide7
+    title: "Compress Video Two"
 
     Image {
         id: img
         fillMode: Image.PreserveAspectFit
         width: 1280
-        source: "qrc:/images/compress_img.png"
+        source: "qrc:/images/2.png"
         anchors.centerIn: parent
     }
 }
